@@ -19,3 +19,19 @@ const divide = function(x, y){
     return x / y;
 }
 
+let x, y, operator;
+
+const operate = function(x, y, operator){
+    switch(operator){
+        case "+":
+            return add(x, y);
+        case "-":
+            return subtract(x, y);
+        case "*":
+            return multiply(x, y);
+        case "/":
+            return divide(x, y);
+        default:
+            return "Invalid operator";
+    }
+}
