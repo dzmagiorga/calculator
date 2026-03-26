@@ -26,8 +26,6 @@ body {
     width: auto;
     margin: 12px;
     box-sizing: content-box;
-/* 
-    border: solid 1px red; */
 }
 
 #buttons {
@@ -35,22 +33,18 @@ body {
     flex-direction: column;
     height: 85%;
     width: 100%;
-/* 
-    border: solid 1px red; */
 }
 
 .row {
     display: flex;
     height: 25%;
-/*     
-    border: solid 1px red; */
 }
 
 .Number, .Operator {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1 0 auto;
+    flex: 1 1 0;
     font-size: xx-large;
     margin: 12px;
     border-radius: 1rem;
