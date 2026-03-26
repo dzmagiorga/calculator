@@ -36,11 +36,22 @@ buttons.addEventListener("click", (event) => {
             if(operator === ""){
                 x += buttonValue;
                 display.textContent += buttonValue;
+            } 
+            else {
+                y += buttonValue;
+                display.textContent += buttonValue;
             }
-            y += buttonValue;
-            display.textContent += buttonValue;
         }
-        
+         if (buttonValue.match(/[\+\-x÷]/g) && (y === "") && (x != "")){
+            if (operator != ""){
+                display.textContent = display.textContent.replaceAll(/[\+\-x÷]/g, "");
+                operator = buttonValue;
+                display.textContent += ` ${buttonValue} `;
+            } else {
+             operator = buttonValue;
+             display.textContent += ` ${buttonValue} `;
+            }
+         }
     }
 })
 
