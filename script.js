@@ -19,20 +19,24 @@ const operate = function(x, y, operator){
             return add(x, y);
         case "-":
             return subtract(x, y);
-        case "*":
+        case "x":
             return multiply(x, y);
-        case "/":
+        case "÷":
             return divide(x, y);
         default:
             return "Invalid operator";
     }
 }
 
-buttons.addEventListener("click", (event) => {
+const displayFormula = function(event) {
     const isButton = event.target.classList.contains("Button");
     if (isButton){
         const buttonValue = event.target.textContent;
-        if (buttonValue.match(/[0-9]/g)){
+        const isNumber = buttonValue.match(/[0-9]/g);
+        const isOperator = buttonValue.match(/[\+\-x÷]/g);
+        const removedOperator = display.textContent.replaceAll(/[\+\-x÷]/g, "");
+
+        if (isNumber){
             if(operator === ""){
                 x += buttonValue;
                 display.textContent += buttonValue;
@@ -42,9 +46,9 @@ buttons.addEventListener("click", (event) => {
                 display.textContent += buttonValue;
             }
         }
-         if (buttonValue.match(/[\+\-x÷]/g) && (y === "") && (x != "")){
+        if (isOperator && (y === "") && (x != "")){
             if (operator != ""){
-                display.textContent = display.textContent.replaceAll(/[\+\-x÷]/g, "");
+                display.textContent = removedOperator;
                 operator = buttonValue;
                 display.textContent += ` ${buttonValue} `;
             } else {
@@ -53,5 +57,34 @@ buttons.addEventListener("click", (event) => {
             }
          }
     }
-})
+};
+
+const calculate = function(event) {
+    const isButton = event.target.classList.contains("Button");
+    if (isButton){
+        const equalSignPressed = (event.target.textContent === "=");
+        if(equalSignPressed && (y != "")){
+            x = display.textContent = operate(x, y, operator);
+            y = operator = "";
+        }
+    }
+}
+
+const clear = function(event){
+    const isButton = event.target.classList.contains("Button");
+    if (isButton){
+        const clearButtonPressed = (event.target.textContent === "C");
+        if (clearButtonPressed){
+            x = y = operator = display.textContent = "";
+        }
+    }
+}
+
+buttons.addEventListener("click", displayFormula);
+
+buttons.addEventListener("click", calculate);
+
+buttons.addEventListener("click", clear);
+
+
 
