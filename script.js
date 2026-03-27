@@ -4,6 +4,7 @@ let buttons = document.querySelector("#buttons");
 let x, y, operator;
 x = y = operator = "";
 display.textContent = "";
+let isOperateExecuted = false;
 
 const add = (x, y) => Number(x) + Number(y);
 
@@ -48,23 +49,30 @@ const displayFormula = function(event) {
 
 
         if (isNumber){
-            if(operator === ""){
+            if(isOperateExecuted && operator === ""){
+                x = buttonValue;
+                display.textContent = buttonValue;
+                isOperateExecuted = false;
+            }
+            else if (operator === ""){
                 x += buttonValue;
                 display.textContent += buttonValue;
-            } 
+            }
             else {
                 y += buttonValue;
                 display.textContent += buttonValue;
             }
         }
+
         if (isOperator && !isXEmpty && isYEmpty ){
             if (operator != ""){
                 display.textContent = removedOperator;
                 operator = buttonValue;
                 display.textContent += ` ${buttonValue} `;
             } else {
-             operator = buttonValue;
-             display.textContent += ` ${buttonValue} `;
+                isOperateExecuted = false;
+                operator = buttonValue;
+                display.textContent += ` ${buttonValue} `;
             }
          }
          if (isOperator && !isXEmpty && !isYEmpty){
@@ -83,6 +91,7 @@ const calculate = function(event) {
         if(equalSignPressed && (y != "")){
             x = display.textContent = roundIfFloat(operate(x, y, operator));
             y = operator = "";
+            isOperateExecuted = true;
         }
     }
 }
