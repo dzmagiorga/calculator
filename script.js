@@ -32,8 +32,10 @@ const operate = function(x, y, operator){
     }
 }
 
+const roundToNth = (num, n) => Number(Math.round(num + `e${n}`) + `e-${n}`).toString();
+
 let roundIfFloat = function(num){
-    if ((Number(num) === num) && !(num % 1 === 0)) return num.toFixed(5);
+    if ((Number(num) === num) && !(num % 1 === 0)) return roundToNth(num, 5);
     return num.toString();
 }
 
