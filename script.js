@@ -32,8 +32,8 @@ const operate = function(x, y, operator){
 }
 
 let roundIfFloat = function(num){
-    if ((Number(num) === num) && (num % 1 != 0)) return num.toFixed(5);
-    else return num.tostring();
+    if ((Number(num) === num) && !(num % 1 === 0)) return num.toFixed(5);
+    return num.toString();
 }
 
 const displayFormula = function(event) {
