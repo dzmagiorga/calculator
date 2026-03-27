@@ -31,6 +31,11 @@ const operate = function(x, y, operator){
     }
 }
 
+let roundIfFloat = function(num){
+    if ((Number(num) === num) && (num % 1 != 0)) return num.toFixed(5);
+    else return num.tostring();
+}
+
 const displayFormula = function(event) {
     const isButton = event.target.classList.contains("Button");
     if (isButton){
@@ -76,7 +81,7 @@ const calculate = function(event) {
     if (isButton){
         const equalSignPressed = (event.target.textContent === "=");
         if(equalSignPressed && (y != "")){
-            x = display.textContent = operate(x, y, operator);
+            x = display.textContent = roundIfFloat(operate(x, y, operator));
             y = operator = "";
         }
     }
@@ -97,6 +102,8 @@ buttons.addEventListener("click", displayFormula);
 buttons.addEventListener("click", calculate);
 
 buttons.addEventListener("click", clear);
+
+
 
 
 

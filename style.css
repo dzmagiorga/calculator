@@ -45,7 +45,7 @@ body {
     height: 25%;
 }
 
-.Number, .Operator {
+.Button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,6 +53,7 @@ body {
     font-size: xx-large;
     margin: 12px;
     border-radius: 1rem;
+    user-select: none;
     background-color: rgb(190, 212, 224);
 }
 
