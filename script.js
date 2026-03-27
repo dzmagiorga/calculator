@@ -49,7 +49,6 @@ const displayFormula = function(event) {
         const isXEmpty = (x === "");
         const isYEmpty = (y === "");
 
-
         if (isNumber){
             if(isOperateExecuted && operator === ""){
                 x = buttonValue;
